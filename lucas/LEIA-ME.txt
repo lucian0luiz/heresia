@@ -1,0 +1,10 @@
+Lucas e Fantasma — ficha editável V1
+Senha: gugostoso
+
+
+V4
+- Retratos de Lucas e Fantasma recortados pelos limites transparentes para posicionamento correto.
+- Lucas reposicionado para a esquerda e ampliado conforme a ficha original.
+- Logo de Lucas reduzido e reposicionado.
+- Fantasma ampliado e reposicionado; logo novo recortado e enquadrado.
+- Banner do Fantasma igualado à proporção do banner principal.
