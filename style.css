@@ -1,0 +1,938 @@
+*{box-sizing:border-box}
+:root{
+  --bg:#f6f7ff;
+  --ink:#172344;
+  --muted:#66758b;
+  --navy:#20295c;
+  --gold:#c5be69;
+  --red:#9c4d4d;
+}
+html,body{
+  margin:0;
+  padding:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:"Poppins",Arial,sans-serif;
+}
+body{display:flex;justify-content:center}
+button,input{font-family:inherit}
+.sheet{
+  width:590px;
+  min-height:2048px;
+  position:relative;
+  overflow:hidden;
+  background:var(--bg);
+}
+
+/* HEADER */
+.topbar{height:118px;position:relative}
+.back{
+  position:absolute;left:52px;top:47px;
+  border:0;background:none;color:var(--gold);
+  font-size:18px;line-height:1;cursor:pointer
+}
+.players{
+  position:absolute;left:244px;top:33px;
+  width:122px;height:26px;border-radius:18px;
+  background:var(--gold);color:white;
+  text-align:center;line-height:26px;
+  font-size:11px;font-weight:600
+}
+.edit-toggle{
+  position:absolute;right:48px;top:33px;
+  height:26px;padding:0 18px;
+  border:1.2px solid var(--ink);
+  border-radius:18px;background:transparent;color:var(--ink);
+  font-size:9px;font-weight:600;cursor:pointer
+}
+.editing .edit-toggle{background:var(--ink);color:white}
+
+/* HERO */
+.hero{height:199px;position:relative;overflow:visible}
+.hero-bg{
+  position:absolute;inset:0;width:100%;height:199px;
+  object-fit:cover;border-radius:38px 0 38px 0;z-index:1
+}
+.character{
+  position:absolute;left:0;bottom:-1px;
+  width:232px;height:auto;z-index:4
+}
+.character-name{
+  position:absolute;left:188px;top:37px;
+  width:282px;height:auto;z-index:3
+}
+
+/* MAIN STATS */
+.main-stats{
+  min-height:130px;
+  margin-top:-39px;
+  padding:0 46px 0 45px;
+  display:grid;
+  grid-template-columns:74px 74px 74px 1fr 70px;
+  column-gap:18px;
+  align-items:start;
+  position:relative;
+  z-index:12
+}
+.stat-card{
+  width:74px;
+  position:relative;
+  text-align:center;
+}
+.stat-card.radiation{
+  width:70px;
+  grid-column:5;
+  margin-top:3px
+}
+.hex-control{
+  position:relative;
+  width:74px;height:86px;
+  display:flex;align-items:center;justify-content:center
+}
+.radiation .hex-control{width:70px;height:81px}
+.hex-control svg{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  overflow:visible
+}
+.hex-control .fill-navy{fill:var(--navy)}
+.hex-control .fill-gold{fill:var(--gold)}
+.hex-control .fill-red{fill:var(--red)}
+.hex-control .outline{
+  fill:var(--bg);
+  stroke:var(--ink);
+  stroke-width:2
+}
+.hex-control .value{
+  position:relative;z-index:2;
+  color:white;font-size:13px;font-weight:700;
+  white-space:nowrap
+}
+.stat-card .stat-label{
+  display:block;margin-top:7px;
+  font-size:11px;font-weight:700;
+  white-space:nowrap
+}
+.stepper{
+  position:absolute;z-index:3;
+  top:50%;transform:translateY(-50%);
+  width:16px;height:22px;padding:0;
+  border:0;background:transparent;
+  color:white;font-size:15px;line-height:22px;
+  cursor:pointer;opacity:.92
+}
+.stepper.minus{left:4px}
+.stepper.plus-step{right:4px}
+.editing .stepper{opacity:1}
+.radiation .stat-label{font-size:10px;margin-top:7px}
+
+/* TOP CONTENT */
+.top-content{
+  display:grid;
+  grid-template-columns:48% 52%;
+  gap:14px;
+  padding:12px 43px 0;
+  min-height:330px
+}
+.left-content{min-width:0}
+.bio-text{
+  margin:0 0 28px;
+  font-size:9px;line-height:1.35
+}
+.pill{
+  width:122px;height:22px;margin:0 auto 15px;
+  border-radius:18px;background:var(--navy);color:white;
+  text-align:center;font-size:10px;line-height:22px
+}
+.possess-table{
+  display:grid;
+  grid-template-columns:1.5fr 1.55fr .45fr 14px;
+  column-gap:8px;row-gap:7px;
+  font-size:8px;line-height:1.15;
+  align-items:start
+}
+.possess-table .head{font-weight:700}
+.possess-table small{color:#a34f54;font-size:6px}
+.plus{
+  width:205px;height:22px;
+  border:1.3px solid var(--ink);border-radius:18px;
+  background:transparent;color:var(--ink);
+  font-weight:700;font-size:11px;
+  margin:14px auto 0;display:block;cursor:pointer
+}
+
+.right-content{padding-left:7px}
+.defense-line{
+  margin:0 0 15px;
+  font-size:8.7px;
+  text-align:center
+}
+.attributes-grid{
+  display:grid;
+  grid-template-columns:repeat(3,58px);
+  gap:24px 17px;
+  justify-content:center;
+  align-items:start
+}
+.attr-card{
+  width:58px;
+  text-align:center;
+  position:relative
+}
+.attr-hex{
+  width:58px;height:67px;
+  position:relative;
+  display:flex;align-items:center;justify-content:center
+}
+.attr-hex svg{
+  position:absolute;inset:0;
+  width:100%;height:100%
+}
+.attr-hex .attr-value{
+  position:relative;z-index:2;
+  font-size:15px;font-weight:700;color:var(--ink)
+}
+.attr-hex .stepper{
+  color:var(--muted);
+  font-size:13px
+}
+.attr-hex .stepper.minus{left:2px}
+.attr-hex .stepper.plus-step{right:2px}
+.attr-label{
+  display:block;margin-top:8px;
+  font-size:10px;font-weight:500;
+  white-space:nowrap
+}
+.carry-card{
+  grid-column:1/3;
+  width:132px;height:57px;
+  border:1.3px solid var(--ink);
+  border-radius:32px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:9px;
+  margin-top:0
+}
+.carry-card b{font-size:10px}
+.perception-card{grid-column:3;grid-row:3}
+
+/* EDITABLE TEXT */
+.editable-text{outline:none}
+.editing .editable-text{
+  border-radius:4px;
+  box-shadow:0 0 0 1px rgba(32,41,92,.18);
+  background:rgba(255,255,255,.42)
+}
+.editing .editable-text:focus{
+  box-shadow:0 0 0 1.5px rgba(32,41,92,.45);
+  background:white
+}
+.cell-edit{
+  min-width:0;
+  outline:none;
+  white-space:pre-line
+}
+.editing .cell-edit{
+  border-radius:3px;
+  background:rgba(255,255,255,.55)
+}
+
+/* RULES */
+.rules{
+  margin:28px 44px 34px;
+  border:1.3px solid var(--ink);
+  border-radius:35px;
+  padding:13px 25px;
+  text-align:center;
+  font-size:7px;line-height:1.35
+}
+
+/* LOWER */
+.two-col{
+  display:grid;
+  grid-template-columns:48% 48%;
+  gap:7%;
+  padding:0 64px
+}
+.section-tag{
+  display:inline-block;
+  background:var(--gold);color:white;
+  border-radius:18px;padding:5px 23px;
+  font-weight:600;font-size:8px
+}
+.two-col h2{font-size:12px;margin:7px 0 6px}
+.two-col p{font-size:7.6px;line-height:1.35;margin:0}
+.two-col h4{font-size:8.5px;margin:18px 0 9px}
+.talents,.failures{list-style:none;padding:0;margin:0}
+.talents li{
+  position:relative;
+  font-size:7.3px;line-height:1.2;
+  margin:10px 0;
+  display:flex;gap:8px;align-items:center
+}
+.talents li:before{
+  content:"";width:18px;height:18px;flex:none;
+  background:url("assets/dice-icon.png") center/contain no-repeat
+}
+.vector .plus{width:205px;margin-top:11px;margin-bottom:17px}
+.fail-title{text-align:center;margin-top:12px!important}
+.failures{text-align:center}
+.failures li{
+  position:relative;
+  font-size:7.2px;line-height:1.2;
+  margin:10px 0
+}
+.action-box{
+  margin-top:27px;
+  border:1.3px solid var(--ink);
+  border-radius:25px;
+  padding:16px 13px;
+  font-size:7px
+}
+.action-box .table-head,
+.action-row{
+  display:grid;
+  grid-template-columns:1.2fr 1.5fr .35fr;
+  gap:6px;text-align:center;align-items:center
+}
+.action-box .table-head{margin-bottom:12px}
+.action-row{margin:6px 0}
+
+/* COMBOS */
+.combos{padding:56px 112px 0;text-align:center}
+.combos h2{font-size:12px;margin:0 0 20px}
+.combo-box{
+  border:1.3px solid var(--ink);
+  border-radius:28px;
+  min-height:243px;
+  padding:22px 30px;
+  font-size:7.5px;text-align:center
+}
+.combo-box .table-head,
+.combo-row{
+  display:grid;
+  grid-template-columns:1.3fr 1.3fr .4fr;
+  gap:15px
+}
+.combo-box .table-head{margin-bottom:24px}
+.combo-row{margin:9px 0}
+
+/* ROW DELETE CONTROLS - edit mode only */
+.remove-row{
+  display:none;
+  border:0;background:transparent;color:#9c4d4d;
+  padding:0;font-size:10px;line-height:1;
+  cursor:pointer
+}
+.editing .remove-row{display:block}
+.talents .remove-row,
+.failures .remove-row{
+  position:absolute;right:-12px;top:50%;transform:translateY(-50%)
+}
+
+/* EDIT TOOLBAR */
+.edit-toolbar{
+  display:none;
+  position:fixed;
+  right:18px;bottom:18px;
+  z-index:50;
+  padding:8px;
+  border:1px solid rgba(23,35,68,.18);
+  border-radius:14px;
+  background:rgba(246,247,255,.96);
+  box-shadow:0 6px 24px rgba(23,35,68,.12);
+  gap:6px
+}
+.editing .edit-toolbar{display:flex}
+.edit-toolbar button,
+.import-label{
+  border:1px solid var(--ink);
+  background:white;color:var(--ink);
+  border-radius:10px;
+  padding:7px 9px;
+  font-size:9px;font-weight:600;
+  cursor:pointer
+}
+.import-label input{display:none}
+
+/* FOOTER */
+footer{
+  height:310px;margin-top:0;position:relative;overflow:hidden;
+  background:linear-gradient(90deg,transparent 0 17%,#e9ebee 17% 34%,transparent 34% 51%,#e9ebee 51% 68%,transparent 68%)
+}
+footer:before,footer:after{
+  content:"";position:absolute;top:65px;
+  width:210px;height:210px;background:#e9ebee;border-radius:50%
+}
+footer:before{left:-105px}
+footer:after{right:-105px}
+
+/* RESPONSIVE */
+@media(max-width:590px){
+  .sheet{width:100%;min-height:0}
+  .topbar{height:20vw}
+  .back{left:8.8vw;top:8vw}
+  .players{
+    left:41.4vw;top:5.6vw;
+    width:20.7vw;height:4.4vw;
+    line-height:4.4vw;font-size:1.86vw
+  }
+  .edit-toggle{
+    right:8.1vw;top:5.6vw;height:4.4vw;
+    padding:0 2.7vw;font-size:1.45vw
+  }
+  .hero{height:33.7vw}
+  .hero-bg{height:33.7vw}
+  .character{width:39.3vw}
+  .character-name{width:47.8vw;left:31.9vw;top:6.25vw}
+  .main-stats{
+    min-height:22vw;
+    margin-top:-6.6vw;
+    padding-left:7.6vw;padding-right:7.8vw;
+    grid-template-columns:12.55vw 12.55vw 12.55vw 1fr 11.86vw;
+    column-gap:3.05vw
+  }
+  .stat-card{width:12.55vw}
+  .stat-card.radiation{width:11.86vw}
+  .hex-control{width:12.55vw;height:14.58vw}
+  .radiation .hex-control{width:11.86vw;height:13.73vw}
+  .hex-control .value{font-size:2.2vw}
+  .stat-card .stat-label{font-size:1.86vw;margin-top:1.18vw}
+  .stepper{font-size:2.54vw;width:2.7vw;height:3.7vw;line-height:3.7vw}
+  .top-content{
+    gap:2.35vw;
+    padding:2vw 7.3vw 0;
+    min-height:56vw
+  }
+  .bio-text{font-size:1.52vw;margin-bottom:4.75vw}
+  .right-content{padding-left:1.2vw}
+  .defense-line{font-size:1.47vw;margin-bottom:2.5vw}
+  .attributes-grid{
+    grid-template-columns:repeat(3,9.83vw);
+    gap:4.06vw 2.88vw
+  }
+  .attr-card{width:9.83vw}
+  .attr-hex{width:9.83vw;height:11.35vw}
+  .attr-hex .attr-value{font-size:2.54vw}
+  .attr-label{font-size:1.69vw;margin-top:1.35vw}
+  .carry-card{width:22.37vw;height:9.66vw;font-size:1.52vw}
+  .pill{width:20.7vw;height:3.73vw;line-height:3.73vw;font-size:1.7vw}
+  .possess-table{font-size:1.35vw}
+  .plus{width:34.75vw}
+}
+
+.pos-item{min-width:0}
+.pos-item .cell-edit{display:inline}
+.editing .empty-tag:empty:after{
+  content:"tag";
+  color:#a34f54;
+  opacity:.45;
+}
+
+
+/* ===== V8 =====
+   Ajustes finais do cabeçalho + hexágonos claros
+*/
+
+/* Corrige os hexágonos de atributos que estavam preenchendo de preto.
+   O SVG continua real/editável, mas agora o interior acompanha o fundo da ficha. */
+.attr-hex .outline{
+  fill:var(--bg) !important;
+  stroke:var(--ink) !important;
+  stroke-width:2 !important;
+}
+
+/* Mantém também qualquer outro hexágono de contorno claro */
+.hex-control .outline{
+  fill:var(--bg) !important;
+  stroke:var(--ink) !important;
+  stroke-width:2 !important;
+}
+
+/* Players + Modo de Edição ficam lado a lado e alinhados verticalmente */
+.topbar{
+  height:118px !important;
+  position:relative !important;
+}
+
+.top-actions{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:18px;
+  width:max-content;
+}
+
+.players{
+  position:static !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  width:122px !important;
+  height:32px !important;
+  border-radius:20px !important;
+  background:var(--gold) !important;
+  color:#fff !important;
+  text-decoration:none !important;
+  font-size:11px !important;
+  line-height:1 !important;
+  font-weight:600 !important;
+  cursor:pointer;
+}
+
+.edit-toggle{
+  position:static !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  height:32px !important;
+  padding:0 20px !important;
+  border:1.3px solid var(--ink) !important;
+  border-radius:20px !important;
+  background:transparent;
+  color:var(--ink);
+  font-size:10px !important;
+  line-height:1 !important;
+  font-weight:600;
+  white-space:nowrap;
+}
+
+.editing .edit-toggle{
+  background:var(--ink) !important;
+  color:#fff !important;
+}
+
+/* O botão voltar continua à esquerda, centralizado na mesma altura dos dois botões */
+.back{
+  top:50% !important;
+  transform:translateY(-50%);
+}
+
+@media(max-width:590px){
+  .top-actions{
+    gap:3vw;
+  }
+
+  .players{
+    width:20.7vw !important;
+    height:5.4vw !important;
+    font-size:1.86vw !important;
+  }
+
+  .edit-toggle{
+    height:5.4vw !important;
+    padding:0 3.4vw !important;
+    font-size:1.65vw !important;
+  }
+
+  .back{
+    left:8.8vw !important;
+    top:50% !important;
+  }
+}
+
+
+/* ===== V9 — NAVEGAÇÃO FINAL HERESIA ===== */
+.site-footer{
+  min-height:330px !important;
+  margin-top:24px !important;
+  position:relative !important;
+  overflow:hidden !important;
+  padding:82px 42px 70px !important;
+  background:
+    linear-gradient(90deg,
+      transparent 0 17%,
+      #e9ebee 17% 34%,
+      transparent 34% 51%,
+      #e9ebee 51% 68%,
+      transparent 68%) !important;
+}
+
+/* Mantém as formas decorativas do Canva ao fundo. */
+.site-footer:before,
+.site-footer:after{
+  content:"";
+  position:absolute;
+  top:65px;
+  width:210px;
+  height:210px;
+  background:#e9ebee;
+  border-radius:50%;
+  z-index:0;
+}
+.site-footer:before{left:-105px}
+.site-footer:after{right:-105px}
+
+.site-map{
+  position:relative;
+  z-index:2;
+  display:grid;
+  grid-template-columns:.88fr .88fr 1.08fr 1.08fr 1.08fr .96fr;
+  gap:12px;
+  align-items:start;
+  width:100%;
+}
+
+.nav-column{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  align-items:stretch;
+}
+
+.footer-pill{
+  min-height:25px;
+  padding:5px 8px;
+  border-radius:18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  text-decoration:none;
+  color:#fff7bb;
+  font-size:7.8px;
+  line-height:1.05;
+  font-weight:700;
+  background:#242b69;
+  border:0;
+  white-space:nowrap;
+  transition:transform .15s ease, filter .15s ease;
+}
+
+a.footer-pill:hover{
+  transform:translateY(-1px);
+  filter:brightness(1.08);
+}
+
+.footer-pill.sub{
+  background:#4a5080;
+}
+
+.footer-pill.muted{
+  background:#afb2c2;
+  color:#fffbe0;
+  cursor:default;
+}
+
+.footer-pill.muted.linked{
+  cursor:pointer;
+}
+
+.footer-pill.muted.linked:hover{
+  transform:translateY(-1px);
+  filter:brightness(1.04);
+}
+
+/* O footer antigo tinha pseudo-elementos próprios;
+   esta regra evita que a configuração anterior interfira. */
+footer.site-footer{
+  height:auto !important;
+}
+
+@media(max-width:590px){
+  .site-footer{
+    min-height:55.9vw !important;
+    margin-top:4vw !important;
+    padding:13.9vw 7.1vw 11.9vw !important;
+  }
+
+  .site-map{
+    grid-template-columns:.88fr .88fr 1.08fr 1.08fr 1.08fr .96fr;
+    gap:2vw;
+  }
+
+  .nav-column{
+    gap:1.35vw;
+  }
+
+  .footer-pill{
+    min-height:4.24vw;
+    padding:.85vw 1.35vw;
+    border-radius:3.05vw;
+    font-size:1.32vw;
+  }
+
+  .site-footer:before,
+  .site-footer:after{
+    top:11vw;
+    width:35.6vw;
+    height:35.6vw;
+  }
+
+  .site-footer:before{left:-17.8vw}
+  .site-footer:after{right:-17.8vw}
+}
+
+
+/* ===== V11 =====
+   Correções de formatação + blocos sem transparência
+*/
+
+/* 1) POSSES:
+   O botão de remover ocupava uma quarta célula só no modo de edição.
+   Quando ele era display:none, o CSS Grid deslocava as linhas seguintes.
+   Mantemos a célula sempre presente e só escondemos visualmente o botão. */
+.possess-table .remove-row{
+  display:block !important;
+  visibility:hidden;
+  width:14px;
+  height:14px;
+  align-self:start;
+  justify-self:center;
+}
+.editing .possess-table .remove-row{
+  visibility:visible;
+}
+
+/* Garante que cada posse se mantenha na linha Item / Dano / Peso. */
+.possess-table{
+  grid-auto-flow:row !important;
+  align-items:start !important;
+}
+.pos-item{
+  min-width:0;
+  overflow-wrap:normal;
+  word-break:normal;
+}
+.pos-item .cell-edit{
+  display:inline;
+}
+
+/* 2) MODO DE EDIÇÃO:
+   nada de blocos translúcidos; os campos ficam sólidos. */
+.editing .editable-text{
+  background:#ffffff !important;
+  box-shadow:0 0 0 1px #d8dbe7 !important;
+}
+.editing .editable-text:focus{
+  background:#ffffff !important;
+  box-shadow:0 0 0 1.5px var(--ink) !important;
+}
+.editing .cell-edit{
+  background:#ffffff !important;
+}
+.edit-toolbar{
+  background:var(--bg) !important;
+  border-color:#d8dbe7 !important;
+}
+
+/* 3) COMBOS / ATAQUES:
+   centraliza verticalmente o cabeçalho + linhas dentro do quadro. */
+.combo-box{
+  min-height:243px !important;
+  display:flex !important;
+  flex-direction:column !important;
+  justify-content:center !important;
+  padding-top:28px !important;
+  padding-bottom:28px !important;
+}
+.combo-box .table-head{
+  width:100%;
+  margin:0 0 34px !important;
+  flex:none;
+}
+#combosTable{
+  width:100%;
+  flex:none;
+}
+.combo-row{
+  width:100%;
+  margin:0 !important;
+}
+
+/* Mantém um espaçamento bonito quando o usuário adicionar mais combos. */
+.combo-row + .combo-row{
+  margin-top:18px !important;
+}
+
+/* Se crescer além do quadro original, o quadro cresce junto. */
+.combo-box:has(.combo-row:nth-child(4)){
+  justify-content:flex-start !important;
+}
+
+/* Mobile */
+@media(max-width:590px){
+  .possess-table .remove-row{
+    width:2.37vw;
+    height:2.37vw;
+  }
+
+  .combo-box{
+    min-height:41.2vw !important;
+    padding-top:4.75vw !important;
+    padding-bottom:4.75vw !important;
+  }
+
+  .combo-box .table-head{
+    margin-bottom:5.75vw !important;
+  }
+
+  .combo-row + .combo-row{
+    margin-top:3vw !important;
+  }
+}
+
+
+/* ===== V12 — rodapé igual à referência atual ===== */
+.site-footer{
+  min-height:250px !important;
+  height:auto !important;
+  margin-top:36px !important;
+  padding:48px 24px 58px !important;
+  background:var(--bg) !important;
+  overflow:visible !important;
+}
+
+/* Remove completamente as formas decorativas antigas. */
+.site-footer:before,
+.site-footer:after{
+  display:none !important;
+  content:none !important;
+}
+
+.site-map-v12{
+  display:grid !important;
+  grid-template-columns:repeat(7, minmax(0,1fr)) !important;
+  gap:14px !important;
+  align-items:start !important;
+  width:100% !important;
+  position:relative !important;
+  z-index:2 !important;
+}
+
+.site-map-v12 .nav-column{
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:stretch !important;
+  gap:9px !important;
+  min-width:0 !important;
+}
+
+.site-map-v12 .footer-pill{
+  width:100% !important;
+  min-width:0 !important;
+  min-height:27px !important;
+  padding:6px 8px !important;
+  border-radius:999px !important;
+  font-size:8.2px !important;
+  line-height:1 !important;
+  font-weight:700 !important;
+  text-align:center !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  color:#fff8ad !important;
+  text-decoration:none !important;
+  white-space:nowrap !important;
+}
+
+.site-map-v12 .footer-pill.main{
+  background:#222969 !important;
+}
+
+.site-map-v12 .footer-pill.sub{
+  background:#4d5287 !important;
+}
+
+/* Remove estilos antigos de muted no novo mapa. */
+.site-map-v12 .footer-pill.muted{
+  background:#4d5287 !important;
+  color:#fff8ad !important;
+}
+
+/* Hover discreto, sem alterar layout. */
+.site-map-v12 a.footer-pill:hover{
+  transform:translateY(-1px) !important;
+  filter:brightness(1.05) !important;
+}
+
+@media(max-width:590px){
+  .site-footer{
+    min-height:42.4vw !important;
+    margin-top:6vw !important;
+    padding:8.1vw 4.1vw 9.8vw !important;
+  }
+
+  .site-map-v12{
+    gap:2.35vw !important;
+  }
+
+  .site-map-v12 .nav-column{
+    gap:1.52vw !important;
+  }
+
+  .site-map-v12 .footer-pill{
+    min-height:4.58vw !important;
+    padding:1vw 1.35vw !important;
+    font-size:1.39vw !important;
+  }
+}
+
+
+/* ===== V13 — ajustes finais de links + COMBOS/ATAQUES ===== */
+
+/* COMBOS/ATAQUES volta para o topo do quadro */
+.combo-box{
+  min-height:243px !important;
+  display:block !important;
+  padding:22px 30px !important;
+}
+
+/* Cabeçalho e linhas ficam na parte superior, como antes */
+.combo-box .table-head{
+  width:100% !important;
+  margin:0 0 24px !important;
+}
+
+#combosTable{
+  width:100% !important;
+}
+
+.combo-row{
+  width:100% !important;
+  margin:9px 0 !important;
+}
+
+/* Centraliza melhor o texto dentro de cada coluna e leva o conjunto levemente à esquerda */
+.combo-box .table-head,
+.combo-row{
+  grid-template-columns:1.25fr 1.25fr .4fr !important;
+  column-gap:12px !important;
+  transform:translateX(-6px);
+}
+
+.combo-box .table-head > *,
+.combo-row > *{
+  text-align:center !important;
+  justify-self:center !important;
+  align-self:center !important;
+}
+
+/* Se houver várias linhas, o quadro cresce naturalmente */
+.combo-row + .combo-row{
+  margin-top:12px !important;
+}
+
+@media(max-width:590px){
+  .combo-box{
+    min-height:41.2vw !important;
+    padding:3.73vw 5.08vw !important;
+  }
+
+  .combo-box .table-head{
+    margin-bottom:4.07vw !important;
+  }
+
+  .combo-box .table-head,
+  .combo-row{
+    column-gap:2.03vw !important;
+    transform:translateX(-1.02vw);
+  }
+
+  .combo-row + .combo-row{
+    margin-top:2.03vw !important;
+  }
+}
