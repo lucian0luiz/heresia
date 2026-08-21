@@ -1,0 +1,4 @@
+THORFINN CRUZ — FICHA EDITÁVEL
+
+Versão V1 criada a partir do molde da V13 do Castiel e estrutura da ficha editável final.
+Inclui: campos editáveis, botões de adicionar linha, exportar/importar JSON e layout adaptado ao personagem.
