@@ -1,0 +1,16 @@
+{
+  "name": "HERESIA",
+  "short_name": "HERESIA",
+  "start_url": "/heresia/",
+  "scope": "/heresia/",
+  "display": "standalone",
+  "background_color": "#f6f7ff",
+  "theme_color": "#20295c",
+  "icons": [
+    {
+      "src": "/heresia/icons/heresia-install-1024.png",
+      "sizes": "1024x1024",
+      "type": "image/png"
+    }
+  ]
+}
