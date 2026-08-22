@@ -8,7 +8,7 @@
   "theme_color": "#20295c",
   "icons": [
     {
-      "src": "/heresia/apple-touch-icon.png?v=5",
+      "src": "/heresia/icons/heresia-color-180.png?v=6",
       "sizes": "180x180",
       "type": "image/png",
       "purpose": "any"
