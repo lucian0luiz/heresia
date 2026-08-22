@@ -1,0 +1,28 @@
+name: Build final iOS touch icon
+
+on:
+  push:
+    paths:
+      - 'icons/final-touch-icon-b64.txt'
+      - '.github/workflows/build-final-touch-icon.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Decode final touch icon
+        run: |
+          base64 -d icons/final-touch-icon-b64.txt > heresia-touch-final.png
+          file heresia-touch-final.png
+      - name: Commit generated PNG
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add heresia-touch-final.png
+          git diff --cached --quiet || git commit -m "Build final iOS touch icon"
+          git push
