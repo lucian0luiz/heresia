@@ -8,8 +8,8 @@
   "theme_color": "#20295c",
   "icons": [
     {
-      "src": "/heresia/icons/heresia-color-180.png?v=6",
-      "sizes": "180x180",
+      "src": "/heresia/icons/heresia-color-192.png?ios=7",
+      "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     }
