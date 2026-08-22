@@ -1,0 +1,1 @@
+Final iOS test uses a dedicated 180x180 PNG generated directly from the user-provided artwork. Home will reference only that Apple touch icon for installation.
