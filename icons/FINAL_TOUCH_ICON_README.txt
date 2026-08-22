@@ -1,0 +1,1 @@
+Final iOS icon test prepared from the user's last image. The next commit should replace this note with the actual binary icon reference.
