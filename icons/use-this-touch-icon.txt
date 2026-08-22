@@ -1,0 +1,1 @@
+The final Apple touch icon should be a 180x180 opaque PNG made directly from the user's last supplied artwork.
