@@ -1,0 +1,1 @@
+Dedicated iOS icon binary is derived directly from the user-provided 1536x1536 JPEG artwork and will be referenced as the sole apple-touch-icon.
