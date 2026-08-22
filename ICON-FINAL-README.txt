@@ -1,0 +1,1 @@
+Final iOS install icon uses icons/heresia-install-1024.png and manifest-final.webmanifest. Generated from the user-provided 1536x1536 artwork.
