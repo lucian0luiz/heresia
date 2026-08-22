@@ -14,7 +14,6 @@
     body{
       display:flex;
       justify-content:center;
-      font-family:Arial,Helvetica,sans-serif;
     }
     .page{
       position:relative;
@@ -30,140 +29,119 @@
       -webkit-user-drag:none;
       pointer-events:none;
     }
-
-    /* As hitboxes são completamente invisíveis.
-       Nada de contorno/caixa aparecendo ao passar o mouse. */
-    .hotspot{
+    .click-layer{
       position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
       display:block;
-      z-index:5;
-      background:transparent;
-      text-decoration:none;
-      outline:none;
+      overflow:visible;
+    }
+    .click-layer a{
       cursor:pointer;
+      outline:none;
     }
-    .hotspot:focus-visible{
-      outline:2px solid rgba(32,41,92,.55);
-      outline-offset:2px;
-      border-radius:10px;
+    .click-layer rect{
+      fill:rgba(0,0,0,0);
+      stroke:none;
+      pointer-events:all;
     }
-
-    /* TOPO — caixas pequenas, só em cima do texto/botão */
-    .top-heresia{left:24.2%;top:.31%;width:5.2%;height:.45%}
-    .top-sistema{left:31.6%;top:.31%;width:5.1%;height:.45%}
-    .top-players-1{left:39.2%;top:.31%;width:5.1%;height:.45%}
-    .top-players-2{left:46.4%;top:.31%;width:5.3%;height:.45%}
-    .top-mundo{left:55.0%;top:.31%;width:4.8%;height:.45%}
-    .top-ideologias{left:61.3%;top:.31%;width:6.6%;height:.45%}
-    .top-atos{left:70.8%;top:.31%;width:3.5%;height:.45%}
-    .top-midia{left:76.4%;top:.31%;width:3.8%;height:.45%}
-    .site{left:40.0%;top:2.02%;width:20.4%;height:1.28%;border-radius:999px}
-
-    /* PERSONAGENS
-       Cada personagem tem DUAS hitboxes:
-       1) retrato à esquerda
-       2) nome à direita
-       Assim não existe mais uma faixa gigante clicável atravessando a página. */
-
-    /* Castiel */
-    .castiel-photo{left:0%;top:11.15%;width:39.7%;height:13.4%;border-radius:0 28px 28px 0}
-    .castiel-name{left:46.0%;top:14.0%;width:38.5%;height:6.3%}
-
-    /* Ksenia */
-    .ksenia-photo{left:0%;top:27.55%;width:39.7%;height:13.0%;border-radius:0 28px 28px 0}
-    .ksenia-name{left:45.8%;top:30.6%;width:41.0%;height:6.8%}
-
-    /* Lucas + Fantasma */
-    .lucas-photo{left:0%;top:43.85%;width:39.5%;height:14.0%;border-radius:0 28px 28px 0}
-    .lucas-name{left:46.0%;top:47.5%;width:39.0%;height:6.5%}
-
-    /* Moira */
-    .moira-photo{left:0%;top:59.9%;width:39.5%;height:13.6%;border-radius:0 28px 28px 0}
-    .moira-name{left:46.1%;top:63.2%;width:39.0%;height:6.1%}
-
-    /* Thorfinn */
-    .thorfinn-photo{left:0%;top:76.2%;width:39.5%;height:13.6%;border-radius:0 28px 28px 0}
-    .thorfinn-name{left:45.0%;top:79.2%;width:42.0%;height:6.8%}
-
-    /* FOOTER PRINCIPAL — só os próprios pills */
-    .f-heresia{left:6.1%;top:91.05%;width:11.3%;height:.82%;border-radius:999px}
-    .f-sistema{left:19.0%;top:91.05%;width:11.2%;height:.82%;border-radius:999px}
-    .f-personagens{left:32.0%;top:91.05%;width:12.4%;height:.82%;border-radius:999px}
-    .f-mundo{left:46.7%;top:91.05%;width:10.9%;height:.82%;border-radius:999px}
-    .f-ideologias{left:59.4%;top:91.05%;width:12.0%;height:.82%;border-radius:999px}
-    .f-atos{left:73.6%;top:91.05%;width:10.7%;height:.82%;border-radius:999px}
-    .f-midia{left:86.1%;top:91.05%;width:10.3%;height:.82%;border-radius:999px}
-
-    .f-atributos{left:32.3%;top:92.50%;width:12.0%;height:.82%;border-radius:999px}
-    .f-mecanicas{left:46.8%;top:92.50%;width:11.8%;height:.82%;border-radius:999px}
-    .f-individuais{left:59.7%;top:92.50%;width:11.7%;height:.82%;border-radius:999px}
-    .f-anotacoes{left:73.6%;top:92.50%;width:11.4%;height:.82%;border-radius:999px}
-
-    .f-indicadores{left:32.3%;top:93.90%;width:12.0%;height:.82%;border-radius:999px}
-    .f-npcs{left:46.8%;top:93.90%;width:11.8%;height:.82%;border-radius:999px}
-    .f-nacionais{left:59.7%;top:93.90%;width:11.7%;height:.82%;border-radius:999px}
-
-    .f-dano{left:32.3%;top:95.30%;width:12.0%;height:.82%;border-radius:999px}
-    .f-ameacas{left:46.8%;top:95.30%;width:11.8%;height:.82%;border-radius:999px}
-    .f-vetores{left:46.8%;top:96.70%;width:11.8%;height:.82%;border-radius:999px}
   </style>
 </head>
 <body>
   <main class="page">
     <img class="page-image" src="assets/players-home.png" alt="Players — Heresia">
 
-    <!-- Topo -->
-    <a class="hotspot top-heresia" href="https://lucian0luiz.my.canva.site/heresia/" aria-label="Heresia"></a>
-    <a class="hotspot top-sistema" href="https://lucian0luiz.my.canva.site/heresia/sistema" aria-label="Sistema"></a>
-    <a class="hotspot top-players-1" href="./" aria-label="Players"></a>
-    <a class="hotspot top-players-2" href="./" aria-label="Players"></a>
-    <a class="hotspot top-mundo" href="https://lucian0luiz.my.canva.site/heresia/mundo" aria-label="Mundo"></a>
-    <a class="hotspot top-ideologias" href="https://lucian0luiz.my.canva.site/heresia/ideologias" aria-label="Ideologias"></a>
-    <a class="hotspot top-atos" href="https://lucian0luiz.my.canva.site/heresia/atos" aria-label="Atos"></a>
-    <a class="hotspot top-midia" href="https://lucian0luiz.my.canva.site/heresia/mdia" aria-label="Mídia"></a>
-    <a class="hotspot site" href="https://lucian0luiz.my.canva.site/heresia/" aria-label="Abrir site Heresia"></a>
+    <svg class="click-layer"
+         viewBox="0 0 2135 6438"
+         preserveAspectRatio="none"
+         aria-label="Links da página Players">
 
-    <!-- Castiel -->
-    <a class="hotspot castiel-photo" href="./castiel/" aria-label="Abrir ficha de Castiel"></a>
-    <a class="hotspot castiel-name" href="./castiel/" aria-label="Abrir ficha de Castiel"></a>
+      <a href="https://lucian0luiz.my.canva.site/heresia/" aria-label="Abrir site Heresia">
+        <rect x="848" y="201" width="438" height="90" rx="40"/>
+      </a>
 
-    <!-- Ksenia -->
-    <a class="hotspot ksenia-photo" href="./ksenia/" aria-label="Abrir ficha de Ksenia"></a>
-    <a class="hotspot ksenia-name" href="./ksenia/" aria-label="Abrir ficha de Ksenia"></a>
+      <a href="./castiel/" aria-label="Abrir ficha de Castiel">
+        <rect x="0" y="704" width="838" height="815" rx="42"/>
+        <rect x="1001" y="939" width="842" height="397" rx="20"/>
+      </a>
 
-    <!-- Lucas + Fantasma -->
-    <a class="hotspot lucas-photo" href="./lucas/" aria-label="Abrir ficha de Lucas e Fantasma"></a>
-    <a class="hotspot lucas-name" href="./lucas/" aria-label="Abrir ficha de Lucas e Fantasma"></a>
+      <a href="./ksenia/" aria-label="Abrir ficha de Ksenia">
+        <rect x="0" y="1603" width="838" height="847" rx="42"/>
+        <rect x="994" y="1921" width="941" height="356" rx="20"/>
+      </a>
 
-    <!-- Moira -->
-    <a class="hotspot moira-photo" href="./moira/" aria-label="Abrir ficha de Moira"></a>
-    <a class="hotspot moira-name" href="./moira/" aria-label="Abrir ficha de Moira"></a>
+      <a href="./lucas/" aria-label="Abrir ficha de Lucas e Fantasma">
+        <rect x="0" y="2537" width="831" height="861" rx="42"/>
+        <rect x="1002" y="2878" width="840" height="370" rx="20"/>
+      </a>
 
-    <!-- Thorfinn -->
-    <a class="hotspot thorfinn-photo" href="./thorfinn/" aria-label="Abrir ficha de Thorfinn"></a>
-    <a class="hotspot thorfinn-name" href="./thorfinn/" aria-label="Abrir ficha de Thorfinn"></a>
+      <a href="./moira/" aria-label="Abrir ficha de Moira">
+        <rect x="0" y="3532" width="831" height="815" rx="42"/>
+        <rect x="1032" y="3831" width="888" height="395" rx="20"/>
+      </a>
 
-    <!-- Footer -->
-    <a class="hotspot f-heresia" href="https://lucian0luiz.my.canva.site/heresia/" aria-label="Heresia"></a>
-    <a class="hotspot f-sistema" href="https://lucian0luiz.my.canva.site/heresia/sistema" aria-label="Sistema"></a>
-    <a class="hotspot f-personagens" href="./" aria-label="Personagens"></a>
-    <a class="hotspot f-mundo" href="https://lucian0luiz.my.canva.site/heresia/mundo" aria-label="Mundo"></a>
-    <a class="hotspot f-ideologias" href="https://lucian0luiz.my.canva.site/heresia/ideologias" aria-label="Ideologias"></a>
-    <a class="hotspot f-atos" href="https://lucian0luiz.my.canva.site/heresia/atos" aria-label="Atos"></a>
-    <a class="hotspot f-midia" href="https://lucian0luiz.my.canva.site/heresia/mdia" aria-label="Mídia"></a>
+      <a href="./thorfinn/" aria-label="Abrir ficha de Thorfinn">
+        <rect x="0" y="4463" width="820" height="857" rx="42"/>
+        <rect x="962" y="4773" width="889" height="365" rx="20"/>
+      </a>
 
-    <a class="hotspot f-atributos" href="https://lucian0luiz.my.canva.site/heresia/atributos" aria-label="Atributos"></a>
-    <a class="hotspot f-mecanicas" href="https://lucian0luiz.my.canva.site/heresia/mecanicas" aria-label="Mecânicas"></a>
-    <a class="hotspot f-individuais" href="https://lucian0luiz.my.canva.site/heresia/ideologias" aria-label="Individuais"></a>
-    <a class="hotspot f-anotacoes" href="https://lucian0luiz.my.canva.site/heresia/anotacoes" aria-label="Anotações"></a>
+      <a href="https://lucian0luiz.my.canva.site/heresia/" aria-label="Heresia">
+        <rect x="131" y="5670" width="240" height="72" rx="36"/>
+      </a>
+      <a href="https://lucian0luiz.my.canva.site/heresia/sistema" aria-label="Sistema">
+        <rect x="403" y="5670" width="239" height="72" rx="36"/>
+      </a>
+      <a href="./" aria-label="Personagens">
+        <rect x="675" y="5670" width="239" height="72" rx="36"/>
+      </a>
+      <a href="https://lucian0luiz.my.canva.site/heresia/mundo" aria-label="Mundo">
+        <rect x="951" y="5670" width="239" height="72" rx="36"/>
+      </a>
+      <a href="https://lucian0luiz.my.canva.site/heresia/ideologias" aria-label="Ideologias">
+        <rect x="1219" y="5670" width="239" height="72" rx="36"/>
+      </a>
+      <a href="https://lucian0luiz.my.canva.site/heresia/atos" aria-label="Atos">
+        <rect x="1491" y="5670" width="239" height="72" rx="36"/>
+      </a>
+      <a href="https://lucian0luiz.my.canva.site/heresia/mdia" aria-label="Mídia">
+        <rect x="1764" y="5670" width="239" height="72" rx="36"/>
+      </a>
 
-    <a class="hotspot f-indicadores" href="https://lucian0luiz.my.canva.site/heresia/indicadores" aria-label="Indicadores"></a>
-    <a class="hotspot f-npcs" href="https://lucian0luiz.my.canva.site/heresia/npcs" aria-label="NPCs"></a>
-    <a class="hotspot f-nacionais" href="https://lucian0luiz.my.canva.site/heresia/ideologias" aria-label="Nacionais"></a>
+      <a href="https://lucian0luiz.my.canva.site/heresia/atributos" aria-label="Atributos">
+        <rect x="675" y="5766" width="239" height="71" rx="35"/>
+      </a>
+      <a href="https://lucian0luiz.my.canva.site/heresia/indicadores" aria-label="Indicadores">
+        <rect x="675" y="5855" width="239" height="72" rx="36"/>
+      </a>
+      <a href="https://lucian0luiz.my.canva.site/heresia/dano" aria-label="Dano">
+        <rect x="675" y="5945" width="239" height="72" rx="36"/>
+      </a>
 
-    <a class="hotspot f-dano" href="https://lucian0luiz.my.canva.site/heresia/dano" aria-label="Dano"></a>
-    <a class="hotspot f-ameacas" href="https://lucian0luiz.my.canva.site/heresia/ameacas" aria-label="Ameaças"></a>
-    <a class="hotspot f-vetores" href="https://lucian0luiz.my.canva.site/heresia/vetores" aria-label="Vetores"></a>
+      <a href="https://lucian0luiz.my.canva.site/heresia/mecanicas" aria-label="Mecânicas">
+        <rect x="951" y="5766" width="239" height="71" rx="35"/>
+      </a>
+      <a href="https://lucian0luiz.my.canva.site/heresia/npcs" aria-label="NPCs">
+        <rect x="951" y="5855" width="239" height="72" rx="36"/>
+      </a>
+      <a href="https://lucian0luiz.my.canva.site/heresia/ameacas" aria-label="Ameaças">
+        <rect x="951" y="5945" width="239" height="72" rx="36"/>
+      </a>
+      <a href="https://lucian0luiz.my.canva.site/heresia/vetores" aria-label="Vetores">
+        <rect x="951" y="6035" width="239" height="71" rx="35"/>
+      </a>
+
+      <a href="https://lucian0luiz.my.canva.site/heresia/ideologias" aria-label="Individuais">
+        <rect x="1221" y="5766" width="233" height="70" rx="35"/>
+      </a>
+      <a href="https://lucian0luiz.my.canva.site/heresia/ideologias" aria-label="Nacionais">
+        <rect x="1221" y="5853" width="233" height="70" rx="35"/>
+      </a>
+
+      <a href="https://lucian0luiz.my.canva.site/heresia/anotacoes" aria-label="Anotações">
+        <rect x="1497" y="5766" width="233" height="70" rx="35"/>
+      </a>
+    </svg>
   </main>
 </body>
 </html>
