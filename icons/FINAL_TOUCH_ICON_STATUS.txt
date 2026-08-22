@@ -1,0 +1,1 @@
+Status: source artwork validated at 1536x1536; final iOS binary conversion prepared locally.
