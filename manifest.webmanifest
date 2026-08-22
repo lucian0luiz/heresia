@@ -1,5 +1,4 @@
 {
-  "id": "/heresia/",
   "name": "HERESIA",
   "short_name": "HERESIA",
   "start_url": "/heresia/",
@@ -9,8 +8,8 @@
   "theme_color": "#20295c",
   "icons": [
     {
-      "src": "/heresia/icons/heresia-color-192.png",
-      "sizes": "192x192",
+      "src": "/heresia/apple-touch-icon.png?v=4",
+      "sizes": "180x180",
       "type": "image/png",
       "purpose": "any"
     }
